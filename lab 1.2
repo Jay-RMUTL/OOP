@@ -3,28 +3,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // สร้างอ็อบเจกต์ Scanner สำหรับรับอินพุตจากผู้ใช้
         Scanner scanner = new Scanner(System.in);
         
-        // --- 1. รับค่าความกว้าง (Width) ---
         System.out.println("กรุณาป้อนค่าความกว้าง (Width) ของสี่เหลี่ยมผืนผ้า (ตัวเลขทศนิยม):");
-        // ใช้ double เพื่อรับค่าทศนิยม
         double width = scanner.nextDouble();
         
-        // --- 2. รับค่าความสูง (Height) ---
         System.out.println("กรุณาป้อนค่าความสูง (Height) ของสี่เหลี่ยมผืนผ้า (ตัวเลขทศนิยม):");
         double height = scanner.nextDouble();
         
-        // ปิด Scanner เมื่อใช้งานเสร็จสิ้น
         scanner.close();
         
-        // --- 3. คำนวณพื้นที่ (Area) ---
-        // สูตรพื้นที่สี่เหลี่ยมผืนผ้า: Area = Width * Height
         double area = width * height;
         
-        // 
-        
-        // --- 4. แสดงผลลัพธ์ ---
         System.out.println("\n--- ผลลัพธ์ ---");
         System.out.println("ความกว้าง (Width) ที่ป้อน: " + width);
         System.out.println("ความสูง (Height) ที่ป้อน: " + height);
