@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("โปรดป้อนคะแนนสอบ (0-100): ");
+
+        if (scanner.hasNextInt()) {
+            int score = scanner.nextInt();
+            String grade;
+
+            if (score < 0 || score > 100) {
+                grade = "คะแนนไม่ถูกต้อง กรุณาป้อนคะแนนระหว่าง 0 ถึง 100";
+            } else {
+                if (score >= 80) {
+                    grade = "A";
+                } else if (score >= 70) {
+                    grade = "B";
+                } else if (score >= 60) {
+                    grade = "C";
+                } else if (score >= 50) {
+                    grade = "D";
+                } else {
+                    grade = "F";
+                }
+            }
+
+            System.out.println("คะแนนที่ป้อน: " + score);
+            System.out.println("เกรดที่ได้คือ: " + grade);
+
+        } else {
+            System.out.println("ข้อมูลที่ป้อนไม่ถูกต้อง กรุณาป้อนเป็นตัวเลขจำนวนเต็มเท่านั้น");
+        }
+
+        scanner.close();
+    }
+}
