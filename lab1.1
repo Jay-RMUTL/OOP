@@ -1,24 +1,17 @@
 import java.util.Scanner;
-
 public class Main {
-
     public static void main(String[] args) {
         Scanner inputScanner = new Scanner(System.in);
-
         System.out.println("--- โปรแกรมคำนวณผลบวก ---");
         System.out.print("กรุณาป้อนจำนวนเต็มตัวที่ 1 (บรรทัดแรก): ");
         int number1 = inputScanner.nextInt();
-
         System.out.print("กรุณาป้อนจำนวนเต็มตัวที่ 2 (บรรทัดที่สอง): ");
         int number2 = inputScanner.nextInt();
-
         int sum = number1 + number2;
-
         System.out.println("\n--- ผลการคำนวณ ---");
         System.out.println("จำนวนเต็มตัวที่ 1 คือ: " + number1);
         System.out.println("จำนวนเต็มตัวที่ 2 คือ: " + number2);
         System.out.println("ผลบวกของ " + number1 + " และ " + number2 + " คือ: " + sum);
-
         inputScanner.close();
     }
 }
