@@ -1,27 +1,19 @@
 import java.util.Scanner;
 
-public class Main { // แก้ไขชื่อคลาสให้เป็น Main
+public class Main {
     public static void main(String[] args) {
-        // 1. สร้างวัตถุ Scanner เพื่อรับข้อมูลจากผู้ใช้
         Scanner scanner = new Scanner(System.in);
 
-        // 2. แจ้งให้ผู้ใช้ป้อนจำนวนเต็ม
         System.out.print("โปรดป้อนจำนวนเต็ม 1 จำนวน: ");
 
-        // 3. รับค่าจำนวนเต็มจากผู้ใช้
         int number = scanner.nextInt();
 
-        // 4. ตรวจสอบว่าเป็นเลขคู่หรือเลขคี่
-        // ใช้ตัวดำเนินการ modulo (%)
         if (number % 2 == 0) {
-            // ถ้าเศษจากการหารด้วย 2 เป็น 0
             System.out.println("Even");
         } else {
-            // ถ้าเศษไม่เป็น 0 (คือเป็น 1)
             System.out.println("Odd");
         }
 
-        // 5. ปิดวัตถุ Scanner
         scanner.close();
     }
 }
