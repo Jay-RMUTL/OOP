@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class CoffeeMenu {
+
+    public static void main(String[] rgs) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        int menuNumber = input.nextInt();
+        
+        String coffeeName;
+        
+        if (menuNumber == 1) {
+            coffeeName = "Americano";
+        } else if (menuNumber == 2) {
+            coffeeName = "Latte";
+        } else if (menuNumber == 3) {
+            coffeeName = "Espresso";
+        } else if (menuNumber == 4) {
+            coffeeName = "Mocha";
+        } else {
+            coffeeName = "Invalid Menu";
+        }
+        
+        System.out.println(coffeeName);
+        
+        input.close();
+    }
+}
