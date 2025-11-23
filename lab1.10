@@ -9,10 +9,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("ป้อนความกว้าง (double): ");
+        System.out.print("ป้อนความกว้าง : ");
         double width = scanner.nextDouble();
 
-        System.out.print("ป้อนความสูง (double): ");
+        System.out.print("ป้อนความสูง : ");
         double height = scanner.nextDouble();
         
         // เรียกใช้ฟังก์ชันโดยตรงเนื่องจากเป็น static
