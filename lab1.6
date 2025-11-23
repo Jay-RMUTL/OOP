@@ -1,36 +1,41 @@
 import java.util.Scanner;
 
 public class Main {
-
-    private static final int MINIMUM_FACTOR = 1;
-    private static final int MAXIMUM_FACTOR = 12;
-
     public static void main(String[] rgs) {
-        try (Scanner inputScanner = new Scanner(System.in)) {
-            System.out.print("โปรดป้อนจำนวนเต็มแม่สูตรคูณ (สามารถเป็นจำนวนลบได้): ");
-            int baseNumber = inputScanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
 
-            if (baseNumber < 0) {
-                System.out.println("\n คำเตือน: ระบบจะแสดงผลสูตรคูณของจำนวนลบ");
+        System.out.print("โปรดป้อนคะแนนสอบ (0-100): ");
+        if (scanner.hasNextInt()) {
+            int score = scanner.nextInt();
+            String grade;
+
+            if (score < 0 || score > 100) {
+                grade = "คะแนนที่ป้อนไม่ถูกต้อง (ต้องอยู่ระหว่าง 0 ถึง 100)";
+            } else {
+                if (score >= 80) {
+                    grade = "A";
+                } else if (score >= 70) {
+                    grade = "B";
+                } else if (score >= 60) {
+                    grade = "C";
+                } else if (score >= 50) {
+                    grade = "D";
+                } else {
+                    grade = "F";
+                }
             }
 
-            printMultiplicationTable(baseNumber);
+            System.out.println("คะแนนที่ป้อน: " + score);
+            if (grade.length() == 1) {
+                System.out.println("คุณได้เกรด: " + grade);
+            } else {
+                System.out.println(grade);
+            }
 
-        } catch (java.util.InputMismatchException e) {
-            System.err.println("ข้อผิดพลาด: กรุณาป้อนจำนวนเต็มที่ถูกต้องเท่านั้น");
+        } else {
+            System.out.println("คุณป้อนข้อมูลไม่ถูกต้อง กรุณาป้อนตัวเลขจำนวนเต็มเท่านั้น");
         }
-    }
-    private static void printMultiplicationTable(int baseNumber) {
-        System.out.println("\n--- สูตรคูณแม่ " + baseNumber + " (ตัวคูณ " + MINIMUM_FACTOR + " ถึง " + MAXIMUM_FACTOR + ") ---");
 
-        for (int factor = MINIMUM_FACTOR; factor <= MAXIMUM_FACTOR; factor++) {
-            
-            int productResult = baseNumber * factor;
-
-            String outputLine = String.format("%-4d x %2d = %5d", baseNumber, factor, productResult);
-            
-            System.out.println(outputLine);
-        }
-        System.out.println("----------------------------------------------------------------");
+        scanner.close();
     }
 }
