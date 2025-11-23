@@ -1,39 +1,15 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] rgs) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int multiplier;
 
-        System.out.print("โปรดป้อนคะแนนสอบ (0-100): ");
-        if (scanner.hasNextInt()) {
-            int score = scanner.nextInt();
-            String grade;
+        System.out.print("ป้อนจำนวนเต็ม (แม่สูตรคูณ): ");
+        multiplier = scanner.nextInt();
 
-            if (score < 0 || score > 100) {
-                grade = "คะแนนที่ป้อนไม่ถูกต้อง (ต้องอยู่ระหว่าง 0 ถึง 100)";
-            } else {
-                if (score >= 80) {
-                    grade = "A";
-                } else if (score >= 70) {
-                    grade = "B";
-                } else if (score >= 60) {
-                    grade = "C";
-                } else if (score >= 50) {
-                    grade = "D";
-                } else {
-                    grade = "F";
-                }
-            }
-
-            System.out.println("คะแนนที่ป้อน: " + score);
-            if (grade.length() == 1) {
-                System.out.println("คุณได้เกรด: " + grade);
-            } else {
-                System.out.println(grade);
-            }
-
-        } else {
-            System.out.println("คุณป้อนข้อมูลไม่ถูกต้อง กรุณาป้อนตัวเลขจำนวนเต็มเท่านั้น");
+        for (int i = 1; i <= 12; i++) {
+            System.out.println(multiplier + " x " + i + " = " + (multiplier * i));
         }
 
         scanner.close();
