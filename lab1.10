@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+
+    static double calculateArea(double width, double height) {
+        return width * height;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("ป้อนความกว้าง (double): ");
+        double width = scanner.nextDouble();
+
+        System.out.print("ป้อนความสูง (double): ");
+        double height = scanner.nextDouble();
+        
+        // เรียกใช้ฟังก์ชันโดยตรงเนื่องจากเป็น static
+        double area = calculateArea(width, height);
+
+        System.out.println("พื้นที่ที่คำนวณได้คือ: " + area);
+        
+        scanner.close();
+    }
+}
