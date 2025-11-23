@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+public class Main {
+
+    public static void inventoryManagement() {
+        Scanner scanner = new Scanner(System.in);
+        int N = 0;
+
+        try {
+            N = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            return;
+        }
+
+        ArrayList<Integer> productIds = new ArrayList<>();
+        ArrayList<Integer> stockQuantities = new ArrayList<>();
+
+        for (int i = 0; i < N; i++) {
+            try {
+                int productId = scanner.nextInt();
+                int stockQuantity = scanner.nextInt();
+                
+                productIds.add(productId);
+                stockQuantities.add(stockQuantity);
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                continue;
+            }
+        }
+
+        int searchId = 0;
+        try {
+            searchId = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid search ID input.");
+            return;
+        } finally {
+            scanner.close();
+        }
+
+        int index = -1;
+        for (int i = 0; i < productIds.size(); i++) {
+            if (productIds.get(i) == searchId) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1) {
+            System.out.println(stockQuantities.get(index));
+        } else {
+            System.out.println("Product " + searchId + " not found");
+        }
+    }
+
+    public static void main(String[] args) {
+        inventoryManagement();
+    }
+}
