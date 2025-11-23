@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void checkTarget(int R, int C, char[][] map, int targetR, int targetC) {
+        if (map[targetR][targetC] == '*') {
+            System.out.println("Mine");
+            return;
+        }
+
+        int mineCount = 0;
+        
+        for (int dr = -1; dr <= 1; dr++) {
+            for (int dc = -1; dc <= 1; dc++) {
+                if (dr == 0 && dc == 0) {
+                    continue;
+                }
+
+                int neighborR = targetR + dr;
+                int neighborC = targetC + dc;
+
+                if (neighborR >= 0 && neighborR < R && neighborC >= 0 && neighborC < C) {
+                    if (map[neighborR][neighborC] == '*') {
+                        mineCount++;
+                    }
+                }
+            }
+        }
+
+        System.out.println(mineCount);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int R = scanner.nextInt();
+        int C = scanner.nextInt();
+        
+        scanner.nextLine(); 
+
+        char[][] map = new char[R][C];
+        for (int i = 0; i < R; i++) {
+            String line = scanner.nextLine();
+            String rowData = line.replaceAll("\\s+", ""); 
+            
+            for (int j = 0; j < C; j++) {
+                map[i][j] = rowData.charAt(j);
+            }
+        }
+        
+        int targetR = scanner.nextInt();
+        int targetC = scanner.nextInt();
+        
+        checkTarget(R, C, map, targetR, targetC);
+
+        scanner.close();
+    }
+}
