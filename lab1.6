@@ -1,17 +1,36 @@
 import java.util.Scanner;
 
 public class Main {
+
+    private static final int MINIMUM_FACTOR = 1;
+    private static final int MAXIMUM_FACTOR = 12;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int multiplier;
+        try (Scanner inputScanner = new Scanner(System.in)) {
+            System.out.print("โปรดป้อนจำนวนเต็มแม่สูตรคูณ (สามารถเป็นจำนวนลบได้): ");
+            int baseNumber = inputScanner.nextInt();
 
-        System.out.print("ป้อนจำนวนเต็ม (แม่สูตรคูณ): ");
-        multiplier = scanner.nextInt();
+            if (baseNumber < 0) {
+                System.out.println("\n⚠️ คำเตือน: ระบบจะแสดงผลสูตรคูณของจำนวนลบ");
+            }
 
-        for (int i = 1; i <= 12; i++) {
-            System.out.println(multiplier + " x " + i + " = " + (multiplier * i));
+            printMultiplicationTable(baseNumber);
+
+        } catch (java.util.InputMismatchException e) {
+            System.err.println("❌ ข้อผิดพลาด: กรุณาป้อนจำนวนเต็มที่ถูกต้องเท่านั้น");
         }
+    }
+    private static void printMultiplicationTable(int baseNumber) {
+        System.out.println("\n--- สูตรคูณแม่ " + baseNumber + " (ตัวคูณ " + MINIMUM_FACTOR + " ถึง " + MAXIMUM_FACTOR + ") ---");
 
-        scanner.close();
+        for (int factor = MINIMUM_FACTOR; factor <= MAXIMUM_FACTOR; factor++) {
+            
+            int productResult = baseNumber * factor;
+
+            String outputLine = String.format("%-4d x %2d = %5d", baseNumber, factor, productResult);
+            
+            System.out.println(outputLine);
+        }
+        System.out.println("----------------------------------------------------------------");
     }
 }
