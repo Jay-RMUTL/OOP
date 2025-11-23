@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main { 
+public class Main {
     public static void main(String[] rgs) {
         Scanner scanner = new Scanner(System.in);
 
@@ -21,20 +21,19 @@ public class Main {
                 } else if (score >= 50) {
                     grade = "D";
                 } else {
-                    // คะแนน 0 - 49
                     grade = "F";
                 }
             }
 
             System.out.println("คะแนนที่ป้อน: " + score);
-            if (grade.length() == 1) { 
+            if (grade.length() == 1) {
                 System.out.println("คุณได้เกรด: " + grade);
-            } else { 
+            } else {
                 System.out.println(grade);
             }
 
         } else {
-            System.out.println("Wrong");
+            System.out.println("คุณป้อนข้อมูลไม่ถูกต้อง กรุณาป้อนตัวเลขจำนวนเต็มเท่านั้น");
         }
 
         scanner.close();
