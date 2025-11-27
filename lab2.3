@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class Student {
+    private String studentId;
+    private String name;
+
+    private static int studentCount = 0;
+
+    public Student(String studentId, String name) {
+        this.studentId = studentId;
+        this.name = name;
+        studentCount++;
+    }
+
+    public static int getStudentCount() {
+        return studentCount;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Student> students = new ArrayList<>();
+
+        int N = scanner.nextInt();
+        scanner.nextLine(); 
+
+        for (int i = 0; i < N; i++) {
+            String id = scanner.nextLine();
+            String name = scanner.nextLine();
+            Student newStudent = new Student(id, name);
+            students.add(newStudent);
+        }
+
+        System.out.println(Student.getStudentCount());
+
+        scanner.close();
+    }
+}
