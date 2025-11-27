@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class Student {
+    public String studentId;
+    public String name;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String studentIdInput = scanner.nextLine();
+        String nameInput = scanner.nextLine();
+
+        Student studentObject = new Student();
+
+        studentObject.studentId = studentIdInput;
+        studentObject.name = nameInput;
+
+        System.out.println(studentObject.studentId);
+        System.out.println(studentObject.name);
+
+        scanner.close();
+    }
+}
