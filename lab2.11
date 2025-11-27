@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+class Car {
+    private String model;
+    private int year;
+
+    public Car(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int newYear) {
+        this.year = newYear;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String modelInput = scanner.nextLine(); 
+        
+        int yearInput = scanner.nextInt();
+        scanner.nextLine(); 
+
+        int newYearInput = scanner.nextInt();
+        scanner.nextLine(); 
+        
+        scanner.close();
+
+        Car myCar = new Car(modelInput, yearInput);
+
+        myCar.setYear(newYearInput);
+
+        System.out.println("Model: " + myCar.getModel());
+        System.out.println("Year: " + myCar.getYear());
+    }
+}
