@@ -1,73 +1,28 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
-
-class Student {
-    String studentId;
-    String name;
-
-    public void displayInfo() {
-        System.out.println("ID: " + studentId + ", Name: " + name);
-    }
-    
-    public Student(String studentId, String name) {
-        this.studentId = studentId;
-        this.name = name;
-    }
-}
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Student> studentList = new ArrayList<>();
-        
-        boolean running = true;
-        
-        while (running) {
-            System.out.println("\n--- Student Management System ---");
-            System.out.println("1. Add New Student (เพิ่มนักศึกษา)");
-            System.out.println("2. Display All Students (แสดงนักศึกษาทั้งหมด)");
-            System.out.println("3. Exit (ออก)");
-            System.out.print("Enter your choice: ");
-            
-            if (!scanner.hasNextLine()) {
-                break;
-            }
-            String choice = scanner.nextLine();
-            
-            switch (choice) {
-                case "1":
-                    System.out.print("Enter Student ID: ");
-                    String inputId = scanner.nextLine();
-                    System.out.print("Enter Full Name: ");
-                    String inputName = scanner.nextLine();
-                    
-                    Student newStudent = new Student(inputId, inputName);
-                    studentList.add(newStudent);
-                    System.out.println("Student added successfully.");
-                    break;
-                    
-                case "2":
-                    if (studentList.isEmpty()) {
-                        System.out.println("No students recorded yet.");
-                    } else {
-                        System.out.println("\n--- Registered Students (" + studentList.size() + ") ---");
-                        for (Student student : studentList) {
-                            student.displayInfo();
-                        }
-                    }
-                    break;
-                    
-                case "3":
-                    running = false;
-                    System.out.println("Exiting program. Goodbye!");
-                    break;
-                    
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
-        
+        String inputStudentId = scanner.nextLine();
+        String inputName = scanner.nextLine();
+        Student studentObject = new Student(inputStudentId, inputName);
+        System.out.println("--- ข้อมูลนักศึกษา ---");
+        studentObject.displayInfo();
         scanner.close();
+    }
+}
+
+class Student {
+    private String studentId;
+    private String name;
+
+    public Student(String studentId, String name) {
+        this.studentId = studentId;
+        this.name = name;
+    }
+
+    public void displayInfo() {
+        System.out.println("รหัสนักศึกษา: " + this.studentId);
+        System.out.println("ชื่อ-นามสกุล: " + this.name);
     }
 }
