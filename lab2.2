@@ -6,7 +6,7 @@ public class Main {
         String inputStudentId = scanner.nextLine();
         String inputName = scanner.nextLine();
         Student studentObject = new Student(inputStudentId, inputName);
-        System.out.println("--- ข้อมูลนักศึกษา ---");
+        System.out.println("");
         studentObject.displayInfo();
         scanner.close();
     }
@@ -22,7 +22,7 @@ class Student {
     }
 
     public void displayInfo() {
-        System.out.println("รหัสนักศึกษา: " + this.studentId);
-        System.out.println("ชื่อ-นามสกุล: " + this.name);
+        System.out.println();
+        System.out.println();
     }
 }
