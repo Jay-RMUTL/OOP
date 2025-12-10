@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("โปรดป้อนชื่อผู้ใช้: ");
+        String inputUsername = scanner.nextLine();
+
+        User userObject = new User(inputUsername);
+
+        System.out.println("ชื่อผู้ใช้ที่จัดเก็บไว้: " + userObject.getUsername());
+
+        scanner.close();
+    }
+}
+
+class User {
+    private String username;
+
+    public User(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+}
