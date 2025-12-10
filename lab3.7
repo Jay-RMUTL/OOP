@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+class Employee {
+
+    private final String employeeId;
+      private String department;
+
+    public Employee(String employeeId, String department) {
+        this.employeeId = employeeId;
+        this.department = department;
+    }
+    public String getEmployeeId() {
+        return employeeId;
+    }
+    public String getDepartment() {
+        return department;
+    }
+    public void setDepartment(String newDepartment) {
+        this.department = newDepartment;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("กรุณาป้อนรหัสพนักงาน:");
+        String idInput = scanner.nextLine();
+        
+        System.out.println("กรุณาป้อนแผนกเริ่มต้น:");
+        String initialDepartmentInput = scanner.nextLine();
+        
+        System.out.println("กรุณาป้อนแผนกใหม่:");
+        String newDepartmentInput = scanner.nextLine();
+
+        Employee emp = new Employee(idInput, initialDepartmentInput);
+
+        emp.setDepartment(newDepartmentInput);
+        
+        System.out.println("\n--- ผลลัพธ์ ---");
+
+        System.out.println(emp.getEmployeeId());
+
+        System.out.println(emp.getDepartment());
+
+        scanner.close();
+    }
+}
