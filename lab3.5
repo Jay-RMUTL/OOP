@@ -3,13 +3,16 @@ import java.util.Scanner;
 class DatabaseConnection {
     private String connectionString;
     private boolean connected;
-        public DatabaseConnection(String connectionString) {
-            this.connectionString = connectionString;
-            this.connected = false;
+
+    public DatabaseConnection(String connectionString) {
+        this.connectionString = connectionString;
+        this.connected = false;
     }
+
     public boolean isConnected() {
         return connected;
     }
+
     public void connect() {
         if (!connected) {
             connected = true;
@@ -18,6 +21,7 @@ class DatabaseConnection {
             System.out.println("Already connected.");
         }
     }
+
     public void disconnect() {
         if (connected) {
             connected = false;
@@ -27,18 +31,17 @@ class DatabaseConnection {
         }
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String connStr = sc.nextLine();
 
-        String connectionString = sc.nextLine();
-        DatabaseConnection db = new DatabaseConnection(connectionString);
-        
+        DatabaseConnection db = new DatabaseConnection(connStr);
+
         db.connect();
         db.disconnect();
         db.disconnect();
-
         System.out.println(db.isConnected());
-        sc.close();
     }
 }
