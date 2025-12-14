@@ -1,51 +1,51 @@
 import java.util.Scanner;
 
-class DatabaseConnection {
-    private String connectionString;
-    private boolean connected;
+class ConnectionSimulator {
+    private String serverName;
+    private boolean isOnline;
 
-    public DatabaseConnection(String connectionString) {
-        this.connectionString = connectionString;
-        this.connected = false;
+    public ConnectionSimulator(String serverName) {
+        this.serverName = serverName;
+        this.isOnline = false;
     }
 
-    public boolean isConnected() {
-        return connected;
+    public boolean isOnline() {
+        return this.isOnline;
     }
 
-    public void connect() {
-        if (!connected) {
-            connected = true;
-            System.out.println("Connected to " + connectionString);
+    public void activateConnection() {
+        if (!this.isOnline) {
+            this.isOnline = true;
+            System.out.println("Connection established to " + this.serverName);
         } else {
-            System.out.println("Already connected.");
+            System.out.println("Session is already active.");
         }
     }
 
-    public void disconnect() {
-        if (connected) {
-            connected = false;
-            System.out.println("Disconnected.");
+    public void closeConnection() {
+        if (this.isOnline) {
+            this.isOnline = false;
+            System.out.println("Connection closed successfully.");
         } else {
-            System.out.println("Already disconnected.");
+            System.out.println("The connection is already terminated.");
         }
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner inputReader = new Scanner(System.in);
 
-        String connectionString = sc.nextLine();
+        String serverInput = inputReader.nextLine();
+        
+        inputReader.close(); 
+        
+        ConnectionSimulator myConnection = new ConnectionSimulator(serverInput);
 
-        DatabaseConnection db = new DatabaseConnection(connectionString);
+        myConnection.activateConnection();
+        myConnection.closeConnection();
+        myConnection.closeConnection(); 
 
-        db.connect();
-        db.disconnect();
-        db.disconnect();
-
-        System.out.println(db.isConnected());
-
-        sc.close();
+        System.out.println(myConnection.isOnline());
     }
 }
