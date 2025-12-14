@@ -35,13 +35,17 @@ class DatabaseConnection {
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String connStr = sc.nextLine();
 
-        DatabaseConnection db = new DatabaseConnection(connStr);
+        String connectionString = sc.nextLine();
+
+        DatabaseConnection db = new DatabaseConnection(connectionString);
 
         db.connect();
         db.disconnect();
         db.disconnect();
+
         System.out.println(db.isConnected());
+
+        sc.close();
     }
 }
