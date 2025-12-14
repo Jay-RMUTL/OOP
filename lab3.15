@@ -1,0 +1,107 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+class User {
+    private String username;
+    private int failedAttempts;
+    private boolean isLocked;
+    private static int maxAttempts = 3;
+    
+    public User(String username) {
+        this.username = username;
+        this.failedAttempts = 0;
+        this.isLocked = false;
+    }
+
+    public static String setPolicy(int max) {
+        if (max > 0) {
+            maxAttempts = max;
+            return "Policy updated.";
+        } else {
+            return "Invalid policy.";
+        }
+    }
+
+    public String login(String password) {
+        String correctPassword = "pass123";
+
+        if (isLocked) {
+            return "Account is locked.";
+        }
+
+        if (password.equals(correctPassword)) {
+            failedAttempts = 0;
+            return "Login successful.";
+        } 
+        else {
+            failedAttempts++;
+            
+            if (failedAttempts >= maxAttempts) {
+                isLocked = true;
+                return "Login failed. Account locked.";
+            } else {
+                int attemptsLeft = maxAttempts - failedAttempts;
+                return "Login failed. " + attemptsLeft + " attempts left.";
+            }
+        }
+    }
+}
+
+class Command {
+    String type;
+    int policyValue;
+    String password;
+
+    public Command(String type, int value, String pass) {
+        this.type = type;
+        this.policyValue = value;
+        this.password = pass;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        String username = scanner.nextLine();
+        
+        int N = scanner.nextInt();
+        scanner.nextLine();
+        
+        List<Command> commandList = new ArrayList<>();
+
+        for (int i = 0; i < N; i++) {
+            String command = scanner.nextLine();
+            
+            if (command.equals("SET_POLICY")) {
+                int newMax = scanner.nextInt();
+                scanner.nextLine();
+                commandList.add(new Command("SET_POLICY", newMax, null));
+                
+            } else if (command.equals("LOGIN")) {
+                String passwordAttempt = scanner.nextLine();
+                commandList.add(new Command("LOGIN", 0, passwordAttempt));
+            }
+        }
+        
+        scanner.close();
+        
+        User user = new User(username);
+        List<String> results = new ArrayList<>();
+        
+        for (Command cmd : commandList) {
+            if (cmd.type.equals("SET_POLICY")) {
+                String result = User.setPolicy(cmd.policyValue);
+                results.add(result);
+            } else if (cmd.type.equals("LOGIN")) {
+                String result = user.login(cmd.password);
+                results.add(result);
+            }
+        }
+
+        for (String result : results) {
+            System.out.println(result);
+        }
+    }
+}
