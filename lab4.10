@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+class TimePeriod {
+    private int startHour;
+    private int endHour;
+
+    public TimePeriod() {
+        this(9, 17);
+    }
+
+    public TimePeriod(int startHour, int endHour) {
+        startHour = validateHour(startHour);
+        endHour = validateHour(endHour);
+
+        if (startHour > endHour) {
+            int temp = startHour;
+            startHour = endHour;
+            endHour = temp;
+        }
+
+        this.startHour = startHour;
+        this.endHour = endHour;
+    }
+
+    private int validateHour(int hour) {
+        if (hour < 0) return 0;
+        if (hour > 23) return 23;
+        return hour;
+    }
+
+    public void displayPeriod() {
+        System.out.println(this.startHour + ":00 - " + this.endHour + ":00");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        if (!sc.hasNextInt()) return;
+        int mode = sc.nextInt();
+        TimePeriod tp;
+
+        if (mode == 1) {
+            tp = new TimePeriod();
+        } else if (mode == 2) {
+            int start = sc.nextInt();
+            int end = sc.nextInt();
+            tp = new TimePeriod(start, end);
+        } else {
+            sc.close();
+            return;
+        }
+
+        tp.displayPeriod();
+        sc.close();
+    }
+}
