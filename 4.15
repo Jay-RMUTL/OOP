@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+class AuditRecord {
+    private final String user;
+    private final String[] logMessages;
+    private static int maxMessages = 3;
+
+    public AuditRecord(String user) {
+        this(user, new String[0]);
+    }
+
+    public AuditRecord(String user, String[] logs) {
+        this.user = user;
+        if (logs.length > maxMessages) {
+            this.logMessages = new String[maxMessages];
+            System.arraycopy(logs, logs.length - maxMessages, this.logMessages, 0, maxMessages);
+        } else {
+            this.logMessages = Arrays.copyOf(logs, logs.length);
+        }
+    }
+
+    public static String setPolicy(int max) {
+        if (max > 0) {
+            maxMessages = max;
+            return "Policy set to " + max;
+        } else {
+            return "Invalid policy.";
+        }
+    }
+
+    public AuditRecord addMessage(String message, List<String> outputBuffer) {
+        if (logMessages.length < maxMessages) {
+            String[] newLogs = Arrays.
