@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+class Subscription {
+    private final String planName;
+    private final int durationDays;
+    private static int maxDuration = 365;
+
+    public Subscription(String planName, int durationDays) {
+        this.planName = planName;
+        if (durationDays > maxDuration) {
+            this.durationDays = maxDuration;
+        } else if (durationDays < 0) {
+            this.durationDays = 0;
+        } else {
+            this.durationDays = durationDays;
+        }
+    }
+
+    public Subscription(Subscription other) {
+        this.planName = other.planName;
+        this.durationDays = other.durationDays;
+    }
+
+    public static String setMaxDuration(int max) {
+        if (max > 0) {
+            maxDuration = max;
+            return "Max duration set to " + max;
+        } else {
+            return "Invalid max policy.";
+        }
+    }
+
+    public Object[] extend(int days) {
+        if (days <= 0) {
+            return new Object[]{"Invalid extension days.", this};
+        }
+
+        int newDays = this.durationDays + days;
+        if (newDays > maxDuration) {
+            return new Object[]{"Extension failed: Exceeds max policy.", this};
+        }
+
+        return new Object[]{"Extension successful.", new Subscription(this.planName, newDays)};
+    }
+
+    public String getInfo() {
+        return "Plan: " + planName + ", Days: " + durationDays;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<String> outputs = new ArrayList<>();
+
+        int maxPolicy = sc.nextInt();
+        outputs.add(Subscription.setMaxDuration(maxPolicy));
+
+        String name = sc.next();
+        int initialDays = sc.nextInt();
+        Subscription sub = new Subscription(name, initialDays);
+
+        int extend1 = sc.nextInt();
+        Object[] res1 = sub.extend(extend1);
+        outputs.add((String) res1[0]);
+        sub = (Subscription) res1[1];
+
+        int extend2 = sc.nextInt();
+        Object[] res2 = sub.extend(extend2);
+        outputs.add((String) res2[0]);
+        sub = (Subscription) res2[1];
+
+        outputs.add(sub.getInfo());
+
+        System.out.println();
+        for (String line : outputs) {
+            System.out.println(line);
+        }
+
+        sc.close();
+    }
+}
