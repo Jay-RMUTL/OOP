@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+class RentalVehicle {
+    protected String model;
+    protected double rentalRate;
+
+    public RentalVehicle(String model, double rentalRate) {
+        this.model = model;
+        this.rentalRate = rentalRate;
+    }
+
+    public double calculateFee() {
+        return rentalRate;
+    }
+}
+
+class Car extends RentalVehicle {
+    public Car(String model, double rentalRate) {
+        super(model, rentalRate);
+    }
+
+    @Override
+    public double calculateFee() {
+        return rentalRate + 100.0;
+    }
+}
+
+class Motorcycle extends RentalVehicle {
+    public Motorcycle(String model, double rentalRate) {
+        super(model, rentalRate);
+    }
+
+    @Override
+    public double calculateFee() {
+        return rentalRate * 1.10;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String carModel = sc.nextLine();
+        double carRate = sc.nextDouble();
+        sc.nextLine(); 
+
+        String motoModel = sc.nextLine();
+        double motoRate = sc.nextDouble();
+
+        Car car = new Car(carModel, carRate);
+        Motorcycle moto = new Motorcycle(motoModel, motoRate);
+
+        RentalVehicle[] vehicles = new RentalVehicle[2];
+        vehicles[0] = car;
+        vehicles[1] = moto;
+
+        double totalFee = 0;
+        for (RentalVehicle v : vehicles) {
+            totalFee += v.calculateFee();
+        }
+
+        System.out.println(totalFee);
+
+        sc.close();
+    }
+}
